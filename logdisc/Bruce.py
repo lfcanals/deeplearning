@@ -17,7 +17,7 @@ def checkArrayDimensions(rnnFirstLayerType, trainInCases, trainOutCases):
 
             # Verify that all arrays in the input are of the same size
 
-class TrainSet:
+class DataSet:
     """To arrays: one of inputs, one of outputs with the train examples"""
     def __init__(self):
         self.trainInput = list() 
@@ -30,7 +30,7 @@ class TrainSet:
 
         
 
-class LSTMTrainSet(TrainSet):
+class LSTMDataSet(DataSet):
     def addTrainExample(self, trainInputs, trainOutputs):
         """Add a pair of train example trainInput and example trainOutput"""
 
@@ -46,8 +46,11 @@ class LSTMTrainSet(TrainSet):
 
         self.testBuilt = False
         if(len(self.testInput) > 0): 
-            print(len(x),' versus ',self.testInput[0].shape[1])
-            assert len(x) == self.testInput[0].shape[1]
+            if(len(x) != self.testInput[0].shape[1]):
+                print('ERROR: the first test input has ', self.testInput[0].shape[1], \
+                      ' elements, but the supplied test input has ', len(x), \
+                      'Sorry, but they should be the same size')
+                raise Exception('ERROR In test set dimensions')
 
         self.testInput.append(x.reshape(1,x.shape[0],1))
 
@@ -63,7 +66,7 @@ class LSTMTrainSet(TrainSet):
                         (self.trainBuiltInput.shape[0], self.trainBuiltInput.shape[1],1))
 
 
-    def getTrainSets(self):
+    def getDataSets(self):
         """Return input and output vectors ready to be used for fitting"""
         if(self.trainBuilt==False): self.build()
         return self.trainBuiltInput, self.trainBuiltOutput

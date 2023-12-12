@@ -3,7 +3,7 @@ import numpy as np
 import LSTM
 
 def targetF(x):
-    return (np.sin(x)+1)/2
+    return (np.cos(x)+1)/2
 
 x_train = []
 rng = np.arange(0, 50, 0.1)
