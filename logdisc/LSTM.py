@@ -25,8 +25,8 @@ from keras.layers import RNN
 #               which lenght is the number of arrays in x_tests
 #                
 def run(targetFunction, x_trains, x_tests):
-    neuronsPerLayer = 32
-    numOfLayers = 2
+    neuronsPerLayer = 128
+    numOfLayers = 4
     model = Sequential()
     for i in range(numOfLayers-1):
         model.add(LSTM(neuronsPerLayer, return_sequences=True, activation=None))
