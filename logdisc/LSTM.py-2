@@ -25,9 +25,8 @@ from keras.layers import RNN
 #               which lenght is the number of arrays in x_tests
 #                
 def run(targetFunction, x_trains, x_tests):
-    neuronsPerLayer = 32
-    numOfLayers = 2
-    trainingErrorLimit = 0.01
+    neuronsPerLayer = 128
+    numOfLayers = 4
     model = Sequential()
     for i in range(numOfLayers-1):
         model.add(LSTM(neuronsPerLayer, return_sequences=True, activation=None))
@@ -63,7 +62,7 @@ def run(targetFunction, x_trains, x_tests):
     #
     t0 = time.perf_counter()
     y_trains_previous, y_trains_forecasts = lstmDataSet.getDataSets()
-    history = model.fit(y_trains_previous, y_trains_forecasts, epochs=1000, verbose=1)
+    history = model.fit(y_trains_previous, y_trains_forecasts, epochs=100, verbose=1)
     t1 = time.perf_counter()
     print('Training time :', t1-t0)
 

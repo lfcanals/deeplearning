@@ -31,3 +31,13 @@ def logdiscBase(R, x0, x):
             yy.append(z)
 
         return np.asarray(yy)
+
+x_train = []
+rng = np.arange(0, 500)
+rngVariations = np.arange(0, 100)
+
+for i in rng: x_train.append(rngVariations + i)
+
+x_tests = []
+for x in np.arange(500, 600, 1, dtype=int):
+    x_tests.append(np.arange(x, x+99.99, 1, dtype=int))

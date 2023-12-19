@@ -12,4 +12,4 @@ x0 = 0.1234
 def schored(x):
     return logdiscBase.logdiscBase(4, x0, x)
 
-LSTM.run(schored, x_train, x_tests)
+LSTM.run(schored, logdiscBase.x_train, logdiscBase.x_tests)
